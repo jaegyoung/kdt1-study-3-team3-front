@@ -19,13 +19,12 @@ export default {
   },
   requestProductListToSpring({ commit }) {
     return axiosInst.post("/product/list").then((resList) => {
-      //get으로 받아온 res.data를  REQUEST_BOARD_LIST_TO_SPRING사용
-      //REQUEST_BOARD_LIST_TO_SPRING는 받아온 데이터를 state의 boards에 넣어줌
       commit(REQUEST_PRODUCT_LIST_TO_SPRING, resList.data);
     });
   },
   requestProductRegisterToSpring({}, payload) {
-    return axiosInst.post("/product/register", payload).then((resRegister) => {
+    return axiosInst.post("/product/register", payload)
+      .then((resRegister) => {
       if (resRegister.data) {
         return resRegister.data;
       } else {
@@ -54,4 +53,13 @@ export default {
         alert("상품수정 실패");
       });
   },
+  requestBusinessProductListToSpring({}, payload) {
+    return axiosInst.post("/product/business-product-list",  payload )
+      .then((resList) => {
+        return resList.data;
+      })
+      .catch(() => {
+        alert("안 보여줌")
+      })
+  }
 };

@@ -6,6 +6,7 @@ import NormalAccountRegisterPage from '@/views/account/NormalAccountRegisterPage
 import BusinessAccountRegisterPage from '@/views/account/BusinessAccountRegisterPage.vue'
 import AccountLoginPage from '@/views/account/AccountLoginPage.vue'
 import AccountMyPage from '@/views/account/AccountMyPage.vue'
+import MyProductListForm from '@/components/account/MyProductListForm.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const accountRoutes = [
     name: 'AccountMyPage',
     component: AccountMyPage
   },
+  {
+    path: '/MyProductListPage',
+    name: 'MyProductListForm',
+    component: MyProductListForm
+  }
 ]
 
 export default accountRoutes
