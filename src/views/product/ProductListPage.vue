@@ -6,6 +6,8 @@
       <v-img :src="require(`@/assets/uploadImgs/${item.productImagePath}`)" 
         :width="50" :heigth="50" @click="productRead(item)"></v-img>
     </template> -->
+
+
     <!-- eslint-disable-next-line -->
     <template v-slot:item.productName="{ item }">
       <td @click="handleCellClick(item)">{{ item.productName }}</td>

@@ -17,11 +17,8 @@
 </template>
 
 <script>
-
 import { mapActions } from 'vuex';
-
 const productModule = 'productModule'
-
 export default {
     methods: {
         ...mapActions(productModule, ['requestBusinessProductListToSpring']),
