@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  frontend:
+    image: ghcr.io/jaegyoung/jaegyoung/kdt1-study-3-team3-front:latest
+    container-name: docker-frontend-deploy-server
+    networks:
+      - app
+
+
+networks:
+  app:
+    driver: bridge      
+ 
