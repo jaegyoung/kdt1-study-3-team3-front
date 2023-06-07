@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Cache dependencies
+    - name: Cache Dependencies
     	id: cache
 	uses: actions/cache@v3
 	with:
