@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-		name: Build
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -19,37 +19,36 @@ jobs:
       with:
         node-version: '18'
 
-		- name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
     - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
           npm ci
 
-		- name: Create .env.production for CD Deploy
-        run: |
-          echo "${{ secrets.CD_DEPLOY_CONFIG }}" > .env.production
+    - name: Create .env.production for CD Deploy
+      run: |
+        echo "${{ secrets.CD_DEPLOY_CONFIG }}" > .env.production
 
     - name: Build
       run: |
-				npm run build
-				ls
-
-	deploy:
-		needs: build
-		name: Transmit essential data
-		uses: appleboy/scp-action@master
-		with:
-			host: ${{ secrets.HOST_PROD }}
-			username: ${{ secrets.USERNAME }}
-			key: ${{ secrets.PRIVATE_KEY }}
-			source: 
-		runs-on: [ self-hosted, deploy-frontend ]
-		
+       npm run build
+       ls
+       
+  deploy:
+    needs: build
+    name: Transmit essential data
+    uses: appleboy/scp-action@master
+    with:
+      host: ${{ secrets.HOST_PROD }}
+      username: ${{ secrets.USERNAME }}
+      key: ${{ secrets.PRIVATE_KEY }}
+      source: 
+    runs-on: [ self-hosted, deploy-frontend ]
